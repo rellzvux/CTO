@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanzz Xiters UI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #0a0015 0%, #000000 100%);
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 25px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 60%, #7a00cc 150%);
+        }
+
+        /* --- LOGO CTO --- */
+        .logo-wrapper {
+            margin-top: 10px;
+            margin-bottom: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .cto-svg {
+            width: 280px;
+            max-width: 90%;
+            filter: drop-shadow(0 0 15px rgba(157, 0, 255, 0.7));
+        }
+
+        .cto-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 200px;
+            letter-spacing: 15px;
+            fill: #ffffff;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- BRANDING --- */
+        .brand-name {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-style: italic;
+            text-shadow: 2px 2px 0px #9d00ff;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 65px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #444;
+            margin-bottom: 20px;
+            background: url('https://i.ibb.co/VWVXz7B/anime-placeholder.jpg') center/cover;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .instruction-text {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 55px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn-login {
+            background-color: #9d00ff;
+            color: white;
+            border: none;
+            box-shadow: 0 0 20px rgba(157, 0, 255, 0.5);
+        }
+
+        .btn-support {
+            background-color: transparent;
+            color: #bc4dff;
+            border: 2px solid #9d00ff;
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+            opacity: 0.9;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            padding-bottom: 20px;
+            width: 100%;
+        }
+
+        .contact-label {
+            font-size: 16px;
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .social-row a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-row svg {
+            width: 28px;
+            height: 28px;
+            fill: #9d00ff;
+            transition: 0.3s;
+        }
+
+        .social-row svg:hover {
+            fill: #ffffff;
+            filter: drop-shadow(0 0 8px #9d00ff);
+        }
+
+        .credits-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+            font-family: 'Segoe UI', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    
+    <div class="logo-wrapper">
+        <svg viewBox="0 0 1000 400" class="cto-svg">
+            <text x="50%" y="65%" text-anchor="middle" class="cto-text">
+                CTO
+            </text>
+        </svg>
+    </div>
+
+    <div class="brand-name">SANN XITERS</div>
+
+    <div class="banner-image"></div>
+
+    <div class="instruction-text">Please Log in or Register to continue</div>
+
+    <a href="start.html" class="btn btn-login">Login</a>
+    <a href="https://wa.me/6288279335055" class="btn btn-support">Support</a>
+
+    <div class="footer">
+        <div class="contact-label">Contact Us</div>
+        
+        <div class="social-row">
+            <a href="https://whatsapp.com/channel/0029VbAOggq3mFYCOUddKZ2j" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.432 5.628 1.433h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </a>
+            <a href="https://t.me/rellzxvx" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.35-.49.96-.75 3.78-1.65 6.31-2.74 7.58-3.27 3.61-1.51 4.35-1.77 4.84-1.78.11 0 .35.03.5.16.12.1.16.23.18.33.02.1.03.31.02.47z"/></svg>
+            </a>
+            <a href="https://instagram.com/xellboyyyy" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.249 2.227.412.56.216.96.474 1.38.894.42.42.678.82.894 1.38.163.422.358 1.057.412 2.227.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.249 1.805-.412 2.227-.216.56-.474.96-.894 1.38-.42.42-.82.678-1.38.894-.422.163-1.057.358-2.227.412-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.805-.249-2.227-.412-.56-.216-.96-.474-1.38-.894-.42-.42-.678-.82-.894-1.38-.163-.422-.358-1.057-.412-2.227-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.054-1.17.249-1.805.412-2.227.216-.56.474-.96.894-1.38.42-.42.82-.678 1.38-.894.422-.163 1.057-.358 2.227-.412 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.741 0 12s.014 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.058-1.28.072-1.687.072-4.947s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+        </div>
+        
+        <div class="credits-row">
+            <span>© SannXit</span>
+            <span>© Renz</span>
+            <span>© Rapzx</span>
+            <span>© Vinzz</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

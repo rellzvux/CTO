@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTO COMMAND Terminal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto+Mono:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0c0c0c;
+            color: #ffffff;
+            font-family: 'Roboto Mono', monospace;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: #9d00ff;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            z-index: 10;
+        }
+
+        .logo-header {
+            width: 35px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- TERMINAL AREA --- */
+        #terminal-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            font-size: 13px;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(180deg, #0c0c0c 0%, #150025 100%);
+        }
+
+        .section-title { font-weight: bold; margin-bottom: 2px; }
+        .divider { border-bottom: 1px solid #ffffff; width: 150px; margin-bottom: 15px; }
+        .welcome-msg { color: #00e5ff; font-weight: bold; margin-top: 10px; }
+        .info-msg { color: #ffeb3b; margin-top: 15px; margin-bottom: 10px; }
+        .error-msg { color: #ffeb3b; font-weight: bold; }
+
+        /* Output Styling */
+        .command-line { color: #9d00ff; font-weight: bold; margin-top: 15px; }
+        pre { 
+            margin: 5px 0; 
+            white-space: pre; 
+            font-family: 'Roboto Mono', monospace;
+            overflow-x: auto;
+        }
+
+        /* --- INPUT AREA --- */
+        .input-wrapper {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #0c0c0c;
+            border-top: 1px solid #333;
+        }
+
+        .input-container {
+            flex: 1;
+            border: 2px solid #9d00ff;
+            border-radius: 8px;
+            padding: 10px 15px;
+            position: relative;
+        }
+
+        .input-label {
+            position: absolute;
+            top: -10px;
+            left: 12px;
+            background-color: #0c0c0c;
+            padding: 0 5px;
+            font-size: 11px;
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        input {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .send-btn {
+            background-color: #9d00ff;
+            border: none;
+            border-radius: 8px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .send-btn:active { transform: scale(0.9); }
+        .send-btn svg { fill: white; width: 22px; height: 22px; }
+
+        /* Toast */
+        #toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(30, 30, 30, 0.95);
+            padding: 8px 18px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            border: 1px solid #444;
+            transition: opacity 0.5s;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <svg class="logo-header" viewBox="0 0 1000 500">
+            <path d="M250 90 L150 170 L150 330 L250 410 L430 410 L430 340 L300 340 L230 300 L230 200 L300 160 L430 160 L430 90 Z M620 160 L780 160 L880 240 L880 260 L780 340 L620 340 L520 260 L520 240 Z M480 70 L410 230 L500 230 L450 430 L650 200 L540 200 Z" />
+        </svg>
+        <h1>CTO COMMAND</h1>
+    </header>
+
+    <div id="terminal-content">
+        <div class="section-title">[ CONFIG TWEAKS ]</div>
+        <div class="section-title">New Update</div>
+        <div class="divider"></div>
+        <div>TEAM: Sann • Rapzx • Renz • Vinzz • </div>
+        <div style="margin: 10px 0;">
+            &gt; help&nbsp;&nbsp;show command list<br>
+            &gt; exit&nbsp;&nbsp;terminate shell
+        </div>
+        <div class="welcome-msg">Welcome to CTOShell!</div>
+        <div>Type 'help' for a list of commands.</div>
+        <div class="info-msg">
+            [i] Shizuku not active — using normal shell.<br>
+            <span class="error-msg">Shizuku service not running. Start Shizuku app first.</span>
+        </div>
+    </div>
+
+    <div id="toast">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff">
+            <path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 10H6v-2h8v2zm4-4H6v-2h12v2z"/>
+        </svg>
+        Unzip selesai
+    </div>
+
+    <div class="input-wrapper">
+        <div class="input-container">
+            <span class="input-label">Shell command</span>
+            <input type="text" id="shell-input" autocomplete="off" spellcheck="false">
+        </div>
+        <button class="send-btn" id="send-btn">
+            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg>
+        </button>
+    </div>
+
+    <script>
+        const input = document.getElementById('shell-input');
+        const btn = document.getElementById('send-btn');
+        const content = document.getElementById('terminal-content');
+        const toast = document.getElementById('toast');
+
+        function appendText(text, color = "#ffffff") {
+            const pre = document.createElement('pre');
+            pre.style.color = color;
+            pre.innerText = text;
+            content.appendChild(pre);
+            content.scrollTop = content.scrollHeight;
+        }
+
+        function sendCommand() {
+            const cmd = input.value.trim();
+            if (cmd === "") return;
+
+            // Tampilkan baris perintah
+            const cmdLine = document.createElement('div');
+            cmdLine.className = 'command-line';
+            cmdLine.innerText = `> ${cmd}`;
+            content.appendChild(cmdLine);
+
+            if (cmd.toLowerCase() === 'help') {
+                appendText(`
+╔══════════════════════════════════════════════════╗
+║                    SHELL  HELP                   ║
+╠══════════════════════════════════════════════════╣
+║  ▶ CORE FEATURE                                  ║
+╟──────────────────────────────────────────────────╢
+║  sh /sdcard/CTO/run.sh             Execute CTO Feature      ║
+╠══════════════════════════════════════════════════╣
+║  ▶ DISPLAY & SYSTEM                              ║
+╟──────────────────────────────────────────────────╢
+║  wm size <WxH>          Screen resolution        ║
+║  wm density <dpi>       Change display density   ║
+║  wm overscan reset      Reset overscan           ║
+╠══════════════════════════════════════════════════╣
+║  ▶ MONITOR                                       ║
+╟──────────────────────────────────────────────────╢
+║  monitor start          Show monitoring overlay  ║
+║  monitor stop           Hide monitoring overlay  ║
+╠══════════════════════════════════════════════════╣
+║  ▶ SHELL CONTROL                                 ║
+╟──────────────────────────────────────────────────╢
+║  cto-setup-storage      Request storage access   ║
+╠══════════════════════════════════════════════════╣
+║  clear                  Clear terminal           ║
+║  clear-all              Full clear               ║
+║  exit                   Exit shell               ║
+╚══════════════════════════════════════════════════╝`, "#ffffff");
+            } 
+            else if (cmd === 'sh /sdcard/CTO/run.sh') {
+                appendText(`
+█████╗░██████╗░░█████╗░░██████╗░
+██╔══██╗██╔══██╗██╔══██╗██╔════╝░
+██║░░██║██████╔╝███████║██║░░██╗░
+██║░░██║██╔══██╗██╔══██║██║░░╚██╗
+██████╔╝██║░░██║██║░░██║╚██████╔╝
+╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░╚═════╝░
+
+░██████╗██╗░░██╗░█████╗░████████╗
+██╔════╝██║░░██║██╔══██╗╚══██╔══╝
+╚█████╗░███████║██║░░██║░░░██║░░░
+░╚═══██╗██╔══██║██║░░██║░░░██║░░░
+██████╔╝██║░░██║╚█████╔╝░░░██║░░░
+╚═════╝░╚═╝░░╚═╝╚════╝░░░░╚═╝░░░
+
+┌─────────────────────────────────────┐
+│              MAIN FEATURES               │
+├─────────────────────────────────────┤
+│ CTO-BRUTALE   : Easy Drag Brutale        │
+│ CTO-DRAGSHOT  : Easy Drag Head           │
+│ CTO-RESET     : Reset All defaults       │
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│            DPI & RESO CHANGER            │
+├─────────────────────────────────────┤
+│ x0            : Default DPI              │
+│ x1            : 450 DPI                  │
+│ x2            : 591 DPI                  │
+│ x3            : 611 DPI                  │
+│ x4            : 691 DPI                  │
+│ x5            : 711 DPI                  │
+│ x6            : 811 DPI                  │
+│ v1            : 1260x2800 RESOLUTION     │
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│          USAGE EXAMPLE COMMAND           │
+├─────────────────────────────────────┤
+│   sh /sdcard/cto/run.sh CTO-BRUTALE x3   │
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│      INFORMATION ABOUT CONFIGTWEAKS      │
+├─────────────────────────────────────┤
+│ Developer     : Sann                     │
+│ Team          : SannXit, Rapzx, renz, novz, loce, zummy, han, pinji │
+│ LICENSE       : @CONFIG TWEAKS OFFICIAL  │
+└─────────────────────────────────────┘`, "#9d00ff");
+            }
+            else if (cmd.toLowerCase() === 'clear' || cmd.toLowerCase() === 'clear-all') {
+                content.innerHTML = '<div class="welcome-msg">Terminal cleared.</div>';
+            }
+            else {
+                appendText(`sh: ${cmd}: command not found`, "#ffeb3b");
+            }
+
+            input.value = "";
+            content.scrollTop = content.scrollHeight;
+            toast.style.opacity = '0';
+        }
+
+        btn.addEventListener('click', sendCommand);
+        input.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendCommand(); });
+        setTimeout(() => { toast.style.opacity = '0'; }, 3000);
+    </script>
+</body>
+</html>
